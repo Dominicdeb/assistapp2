@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssistApp</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<style>
+body { font-family: Arial; background:#111; color:white; text-align:center; }
+.screen { display:none; }
+.active { display:block; }
+input,button { padding:10px; margin:5px; width:200px; }
+</style>
+</head>
+
+<body>
+
+<div id="menuScreen" class="screen active">
+  <button onclick="mostrarLogin()">Iniciar sesión</button>
+  <button onclick="mostrarRegistro()">Registrarse</button>
+</div>
+
+<div id="loginScreen" class="screen">
+  <input id="emailLogin" placeholder="Email">
+  <input id="passwordLogin" type="password" placeholder="Pass">
+  <button onclick="iniciarSesion()">Entrar</button>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<div id="registroScreen" class="screen">
+  <input id="emailRegistro" placeholder="Email">
+  <input id="passwordRegistro" type="password" placeholder="Pass">
+  <button onclick="registrar()">Crear</button>
+  <button onclick="volverMenu()">Volver</button>
+</div>
+
+<div id="qrScreen" class="screen">
+  <h2>Tu QR</h2>
+  <canvas id="qrCanvas"></canvas>
+  <button onclick="cerrarSesion()">Salir</button>
+</div>
+
+
+</body>
+</html>

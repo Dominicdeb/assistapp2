@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "assistapp-v2",
+    "AssistApp": "assistapp-v2"
+  },
+  "targets": {},
+  "etags": {}
+}
