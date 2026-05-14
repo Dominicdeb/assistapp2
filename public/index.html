@@ -3,46 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AssistApp</title>
+<title>Assist-App</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<link rel="stylesheet" href="styles.css">
+
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
 
-<style>
-body { font-family: Arial; background:#111; color:white; text-align:center; }
-.screen { display:none; }
-.active { display:block; }
-input,button { padding:10px; margin:5px; width:200px; }
-</style>
+<link rel="icon" href="data:,">
 </head>
-
 <body>
 
+<!-- MENU -->
 <div id="menuScreen" class="screen active">
-  <button onclick="mostrarLogin()">Iniciar sesión</button>
-  <button onclick="mostrarRegistro()">Registrarse</button>
+<div class="card hero-card">
+<h1>Menu Inicial</h1>
+<p>Bienvenido/a al nuevo sistema de asistencias.</p>
+
+<div class="button-group">
+<button onclick="mostrarLogin()">Iniciar sesión</button>
+<button onclick="mostrarRegistro()">Crear cuenta</button>
+</div>
+</div>
 </div>
 
+<!-- LOGIN -->
 <div id="loginScreen" class="screen">
-  <input id="emailLogin" placeholder="Email">
-  <input id="passwordLogin" type="password" placeholder="Pass">
-  <button onclick="iniciarSesion()">Entrar</button>
-  <button onclick="volverMenu()">Volver</button>
+<div class="card">
+<h2>Acceso seguro</h2>
+
+<input id="emailLogin" placeholder="Correo institucional">
+<input id="passwordLogin" type="password" placeholder="Contraseña">
+
+<button onclick="iniciarSesion()">Ingresar</button>
+<button class="secondary" onclick="volverMenu()">Volver</button>
+</div>
 </div>
 
+<!-- REGISTRO -->
 <div id="registroScreen" class="screen">
-  <input id="emailRegistro" placeholder="Email">
-  <input id="passwordRegistro" type="password" placeholder="Pass">
-  <button onclick="registrar()">Crear</button>
-  <button onclick="volverMenu()">Volver</button>
+<div class="card">
+<h2>Registro institucional</h2>
+
+<input id="nombre" placeholder="Nombre">
+<input id="apellido" placeholder="Apellido">
+
+<select id="curso"></select>
+
+<input id="emailRegistro" placeholder="Correo">
+<input id="passwordRegistro" type="password" placeholder="Contraseña">
+
+<button onclick="registrar()">Crear cuenta</button>
+<button class="secondary" onclick="volverMenu()">Volver</button>
+</div>
 </div>
 
+<!-- QR ALUMNO -->
 <div id="qrScreen" class="screen">
-  <h2>Tu QR</h2>
-  <canvas id="qrCanvas"></canvas>
-  <button onclick="cerrarSesion()">Salir</button>
+<div class="card">
+<h2>Identificación digital</h2>
+
+<canvas id="qrCanvas"></canvas>
+<p id="pinAlumno" class="mini"></p>
+
+<p class="mini">
+Este código está cifrado y validado institucionalmente.
+</p>
+
+<button class="danger" onclick="cerrarSesion()">Cerrar sesión</button>
+</div>
 </div>
 
+<!-- ADMIN -->
+<div id="adminScreen" class="screen">
+<div class="dashboard-card">
+
+<div class="dashboard-top">
+<h2>Panel Administrativo</h2>
+<input type="date" id="fechaInput" onchange="cambiarFecha()">
+</div>
+
+<div class="dashboard-actions">
+<button onclick="iniciarScanner()">Escanear</button>
+<button onclick="exportarExcel()">Exportar CSV</button>
+<button class="danger" onclick="cerrarSesion()">Cerrar sesión</button>
+</div>
+
+<h3 id="porcentaje"></h3>
+
+<!-- ACÁ vuelve la lista por curso -->
+<div id="cursos" class="cursos-grid"></div>
+
+</div>
+</div>
+
+<!-- HISTORIAL -->
+<div id="historialModal" class="screen">
+<div class="card">
+<h2 id="historialTitulo"></h2>
+
+<div id="historialContenido"></div>
+
+<button onclick="cerrarHistorial()">Cerrar</button>
+</div>
+</div>
+
+<!-- SCANNER -->
+<div id="scannerScreen" class="screen">
+<div class="card">
+<h2>Escaneo seguro</h2>
+
+<div id="reader"></div>
+
+<button onclick="detenerScanner()">Detener</button>
+</div>
+</div>
+
+<footer>
+Assist-App Enterprise Suite · 2026
+</footer>
+
+<script type="module" src="./app.js"></script>
 
 </body>
 </html>
